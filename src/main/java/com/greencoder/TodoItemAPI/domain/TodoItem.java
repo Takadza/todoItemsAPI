@@ -1,16 +1,22 @@
 package com.greencoder.TodoItemAPI.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class TodoItem {
 
     private int id;
     private String task;
+    private LocalDateTime Posted;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,4 +47,15 @@ public class TodoItem {
     private Boolean isDone;
 
 
+    @CreationTimestamp
+   // @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+
+    public LocalDateTime getPosted() {
+        return Posted;
+    }
+
+    public void setPosted(LocalDateTime posted) {
+        Posted = posted;
+    }
 }
